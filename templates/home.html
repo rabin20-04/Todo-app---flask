@@ -83,14 +83,15 @@
 
     <!-- form starting here -->
     <div class="container col-md-5">
-      <form>
+      <form action="/" method="POST">
         <div class="mb-3">
           <label for="title" class="form-label">Title</label>
-          <input type="text" class="form-control" id="title" />
+          <input type="text" name="title" class="form-control" id="title" />
         </div>
         <div class="mb-3">
           <label for="description" class="form-label">Description</label><br />
           <textarea
+            name="description"
             class="form-control"
             id="description"
             style="
@@ -118,34 +119,16 @@
               <th scope="col">Created on</th>
             </tr>
           </thead>
+
           <tbody>
+            {% for todo in allTodo %}
             <tr>
-              <th scope="row">1</th>
-              <td>Mark Manson</td>
-              <td>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Architecto recusandae sunt eius odio, dignissimos saepe?
-              </td>
-              <td>30,000</td>
+              <th scope="row">{{loop.index}}</th>
+              <td>{{todo.title}}</td>
+              <td>{{todo.description}}</td>
+              <td>{{todo.date_created}}</td>
             </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Robert Green</td>
-              <td>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Architecto recusandae sunt eius odio, dignissimos saepe?
-              </td>
-              <td>30,000</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>James Clear</td>
-              <td>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Architecto recusandae sunt eius odio, dignissimos saepe?
-              </td>
-              <td>30,000</td>
-            </tr>
+            {% endfor %}
           </tbody>
         </table>
       </div>
