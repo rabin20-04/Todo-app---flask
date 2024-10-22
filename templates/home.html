@@ -133,7 +133,7 @@
             {% for todo in allTodo %}
             <tr>
               <th scope="row">{{loop.index}}</th>
-              <td>{{todo.title}}</td>
+              <td class="text-capitalize">{{todo.title}}</td>
               <td style=" max-width: 20vw;">{{todo.description}}</td>
               <td>{{todo.date_created}}</td>
               <td>
