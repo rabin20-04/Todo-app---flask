@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request,redirect
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime, timezone
 
@@ -33,5 +33,23 @@ def home():
     return render_template("home.html", allTodo=allTodo)
 
 
+@app.route("/delete/<int:s_no>")
+def delete(s_no):
+    todo=Todo.query.filter_by(s_no=s_no).first()
+    db.session.delete(todo)
+    db.session.commit()
+    return redirect("/")
+
+@app.route("/update/<int:s_no>")
+def update(s_no):
+    todo=Todo.query.filter_by(s_no=s_no).first()
+    db.session.update(todo)
+    db.session.commit()
+    return redirect("/")
+
+
+
+
+    
 if __name__ == "__main__":
     app.run(debug=True, port=8001)
