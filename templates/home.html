@@ -84,6 +84,7 @@
     <!-- form starting here -->
     <div class="container col-md-5">
       <form action="/" method="POST">
+        <!-- <h2 class="mb-3 ">Add Todo</h2> -->
         <div class="mb-3">
           <label for="title" class="form-label">Title</label>
           <input type="text" name="title" class="form-control" id="title" />
@@ -114,11 +115,8 @@
           <h2 class="ms-3">Your Todos</h2>
           <thead class="">
             {% if allTodo|length==0 %}
-            <div
-              class="ms-5  alert alert-warning col-md-8"
-              role="alert"
-            >
-              No record found!
+            <div class="ms-5 alert alert-warning col-md-8" role="alert">
+              No Todos found. Add your first todo now!
             </div>
             {% else %}
             <tr>
@@ -136,7 +134,7 @@
             <tr>
               <th scope="row">{{loop.index}}</th>
               <td>{{todo.title}}</td>
-              <td>{{todo.description}}</td>
+              <td style=" max-width: 20vw;">{{todo.description}}</td>
               <td>{{todo.date_created}}</td>
               <td>
                 <a
@@ -148,7 +146,7 @@
                 ><a
                   href="/update/{{todo.s_no}}"
                   type="button"
-                  class="btn btn-outline-primary btn-sm ms-3"
+                  class="btn btn-outline-primary btn-sm ms-0 ms-lg-3 mt-2 mt-lg-0 me-5 me-lg-0"
                 >
                   Update
                 </a>

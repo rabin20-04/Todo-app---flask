@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request,redirect
+from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime, timezone
 
@@ -25,7 +25,7 @@ def home():
     if request.method == "POST":
         title_var = request.form["title"]
         description_var = request.form["description"]
-        # title_var=request.form['title']
+
         todo = Todo(title=title_var, description=description_var)
         db.session.add(todo)
         db.session.commit()
@@ -35,21 +35,28 @@ def home():
 
 @app.route("/delete/<int:s_no>")
 def delete(s_no):
-    todo=Todo.query.filter_by(s_no=s_no).first()
+    todo = Todo.query.filter_by(s_no=s_no).first()
     db.session.delete(todo)
     db.session.commit()
     return redirect("/")
 
-@app.route("/update/<int:s_no>")
+
+@app.route("/update/<int:s_no>",methods=["GET", "POST"])
 def update(s_no):
-    todo=Todo.query.filter_by(s_no=s_no).first()
-    db.session.update(todo)
-    db.session.commit()
-    return redirect("/")
+    if request.method == "POST":
+        title_var = request.form["title"]
+        description_var = request.form["description"]
+        todo = Todo.query.filter_by(s_no=s_no).first()
+        todo.title=title_var
+        todo.description=description_var
+        db.session.add(todo)
+        db.session.commit()
+        return redirect("/")
+
+    todo = Todo.query.filter_by(s_no=s_no).first()
+
+    return render_template("update.html", todo=todo)
 
 
-
-
-    
 if __name__ == "__main__":
     app.run(debug=True, port=8001)
