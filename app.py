@@ -109,6 +109,12 @@ def update(s_no):
 
     return render_template("update.html", todo=todo)
 
+def clear_todo_db():
+    db.session.query(Todo).delete()
+    db.session.commit()
+
 
 if __name__ == "__main__":
+    with app.app_context():  
+        clear_todo_db()
     app.run(debug=True, port=8001)
