@@ -20,7 +20,7 @@ class Todo(db.Model):
         )
 
 
-@app.route("/", methods=["GET", "POST"])
+@app.route("/home", methods=["GET", "POST"])
 def home():
     if request.method == "POST":
         title_var = request.form["title"]
@@ -33,25 +33,35 @@ def home():
     return render_template("home.html", allTodo=allTodo)
 
 
+@app.route("/")
+def login():
+    return render_template("login.html")
+
+
+@app.route("/register")
+def register():
+    return render_template("register.html")
+
+
 @app.route("/delete/<int:s_no>")
 def delete(s_no):
     todo = Todo.query.filter_by(s_no=s_no).first()
     db.session.delete(todo)
     db.session.commit()
-    return redirect("/")
+    return redirect("/home")
 
 
-@app.route("/update/<int:s_no>",methods=["GET", "POST"])
+@app.route("/update/<int:s_no>", methods=["GET", "POST"])
 def update(s_no):
     if request.method == "POST":
         title_var = request.form["title"]
         description_var = request.form["description"]
         todo = Todo.query.filter_by(s_no=s_no).first()
-        todo.title=title_var
-        todo.description=description_var
+        todo.title = title_var
+        todo.description = description_var
         db.session.add(todo)
         db.session.commit()
-        return redirect("/")
+        return redirect("/home")
 
     todo = Todo.query.filter_by(s_no=s_no).first()
 
@@ -60,3 +70,16 @@ def update(s_no):
 
 if __name__ == "__main__":
     app.run(debug=True, port=8001)
+
+
+# @app.route("/register", methods=["GET", "POST"])
+# def register():
+#     if request.method == "POST":
+#         email = request.form["email"]
+#         password = request.form["password"]
+
+#         todo = Todo(email=email, password=password)
+#         db.session.add(todo)
+#         db.session.commit()
+#     allData = Todo.query.all()
+#     return render_template("home.html", allData=allData)

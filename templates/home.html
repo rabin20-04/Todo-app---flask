@@ -22,7 +22,7 @@
           class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
         >
           <a
-            href="/"
+            href="/home"
             class="d-flex fw-bold align-items-center mb-2 mb-lg-0 pe-3 link-body-emphasis text-decoration-none"
           >
             TODOS
@@ -34,18 +34,8 @@
             <li>
               <a href="#" class="nav-link px-2 link-secondary">Overview</a>
             </li>
-            <li>
-           
+            <li></li>
           </ul>
-
-          <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-            <input
-              type="search"
-              class="form-control"
-              placeholder="Search..."
-              aria-label="Search"
-            />
-          </form>
 
           <div class=" ">
             <a
@@ -63,15 +53,19 @@
                 style="object-fit: cover"
               />
             </a>
-           
           </div>
+          <a
+            href="/"
+            class="btn btn-outline-primary text-light rounder border border-info ms-3 bg-dark "
+            >Logout</a
+          >
         </div>
       </div>
     </header>
 
     <!-- form starting here -->
     <div class="container col-md-5">
-      <form action="/" method="POST">
+      <form action="/home" method="POST">
         <!-- <h2 class="mb-3 ">Add Todo</h2> -->
         <div class="mb-3">
           <label for="title" class="form-label">Title</label>
