@@ -21,7 +21,7 @@
   </head>
   <body class="body-1">
     <nav class="navbar nav-main">
-      <a href="" class="navbar-brand nav-brand ps-4 Expense">Todo App </a>
+      <a href="#" class="navbar-brand nav-brand ps-4 Expense">Todo App </a>
     </nav>
     <div class="container">
       <div class="row">
@@ -38,12 +38,15 @@
         <div class="col-md-4 mt-4 pt-5">
           <div class="card">
             <div class="card-body card-items">
-              <form class="form" method="POST" action="/" >
+              <form class="form" method="POST" action="/login_validation">
+                <label for="warning" class="text-danger"
+                  >Username or Password incorrect!
+                </label><br>
                 <label for="email">Email: </label>
                 <input
                   class="form-control"
                   type="email"
-                  name="email"
+                  name="email "
                   required
                 /><br />
                 <label for="password">Password: </label>

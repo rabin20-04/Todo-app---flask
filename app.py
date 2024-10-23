@@ -4,7 +4,49 @@ from datetime import datetime, timezone
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///todo.db"
+app.config["SQLALCHEMY_BINDS"] = {"users_data": "sqlite:///user.db"}
 db = SQLAlchemy(app)
+
+
+class user_data(db.Model):
+    __bind_key__ = "users_data"
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(50), nullable=False, unique=True)
+    password = db.Column(db.String(50), nullable=False)
+
+
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    if request.method == "POST":
+        email = request.form["email"]
+        password = request.form["password"]
+
+        new_user = user_data(email=email, password=password)
+        db.session.add(new_user)
+        db.session.commit()
+        return redirect("/")
+
+    return render_template("register.html")
+
+
+@app.route("/", methods=["GET", "POST"])
+def login_page():
+    if request.method == "POST":
+        email = request.form["email"]
+        password = request.form["password"]
+
+        user = user_data.query.filter_by(email=email, password=password).first()
+        if user:
+            return redirect("/home")  
+        else:
+            return redirect("/error")  
+
+    return render_template("login.html")
+
+
+@app.route("/error")
+def error_page():
+    return render_template("error.html")
 
 
 class Todo(db.Model):
@@ -33,16 +75,6 @@ def home():
     return render_template("home.html", allTodo=allTodo)
 
 
-@app.route("/")
-def login():
-    return render_template("login.html")
-
-
-@app.route("/register")
-def register():
-    return render_template("register.html")
-
-
 @app.route("/delete/<int:s_no>")
 def delete(s_no):
     todo = Todo.query.filter_by(s_no=s_no).first()
@@ -68,18 +100,8 @@ def update(s_no):
     return render_template("update.html", todo=todo)
 
 
+
+
+
 if __name__ == "__main__":
     app.run(debug=True, port=8001)
-
-
-# @app.route("/register", methods=["GET", "POST"])
-# def register():
-#     if request.method == "POST":
-#         email = request.form["email"]
-#         password = request.form["password"]
-
-#         todo = Todo(email=email, password=password)
-#         db.session.add(todo)
-#         db.session.commit()
-#     allData = Todo.query.all()
-#     return render_template("home.html", allData=allData)
