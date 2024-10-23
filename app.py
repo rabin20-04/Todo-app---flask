@@ -37,9 +37,9 @@ def login_page():
 
         user = user_data.query.filter_by(email=email, password=password).first()
         if user:
-            return redirect("/home")  
+            return redirect("/home")
         else:
-            return redirect("/error")  
+            return redirect("/error")
 
     return render_template("login.html")
 
@@ -52,7 +52,7 @@ def error_page():
 
         user = user_data.query.filter_by(email=email, password=password).first()
         if user:
-            return redirect("/home")  
+            return redirect("/home")
         else:
             return render_template("error.html")
 
@@ -108,9 +108,6 @@ def update(s_no):
     todo = Todo.query.filter_by(s_no=s_no).first()
 
     return render_template("update.html", todo=todo)
-
-
-
 
 
 if __name__ == "__main__":
