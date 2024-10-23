@@ -14,6 +14,10 @@
       rel="stylesheet"
       href="{{url_for('static',filename='css/style.css')}}"
     />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.4.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
   </head>
   <body class="bg-clr">
     <header class="p-3 mb-3 border-bottom bg-primary-subtle">
@@ -118,7 +122,18 @@
             <tr>
               <th scope="row">{{loop.index}}</th>
               <td class="text-capitalize">{{todo.title}}</td>
-              <td style="max-width: 20vw">{{todo.description}}</td>
+              <td style="max-width: 20vw">
+                <div
+                  class="d-block"
+                  style="
+                    max-height: 40vh;
+                    overflow-x: hidden;
+                    scrollbar-width: thin;
+                  "
+                >
+                  {{todo.description}}
+                </div>
+              </td>
               <td>{{todo.date_created}}</td>
               <td>
                 <a
@@ -157,5 +172,19 @@
       integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
       crossorigin="anonymous"
     ></script>
+    <footer class="py-3 my-4">
+      <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+        <li class="nav-item">
+          <a href="#" class="nav-link px-2 text-muted"
+            ><i class="ri-github-fill text-dark fs-4"></i
+          ></a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link px-2 text-muted"
+            ><i class="ri-linkedin-box-fill text-primary fs-4"></i
+          ></a>
+        </li>
+      </ul>
+    </footer>
   </body>
 </html>
