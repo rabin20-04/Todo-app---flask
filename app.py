@@ -44,8 +44,18 @@ def login_page():
     return render_template("login.html")
 
 
-@app.route("/error")
+@app.route("/error", methods=["GET", "POST"])
 def error_page():
+    if request.method == "POST":
+        email = request.form["email"]
+        password = request.form["password"]
+
+        user = user_data.query.filter_by(email=email, password=password).first()
+        if user:
+            return redirect("/home")  
+        else:
+            return render_template("error.html")
+
     return render_template("error.html")
 
 
