@@ -36,7 +36,7 @@
             class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"
           >
             <li>
-              <a href="#your_todos" class="nav-link px-2 link-secondary"
+              <a href="#your_todos" class="nav-link px-2 link-secondary" 
                 >Overview</a
               >
             </li>
@@ -88,6 +88,7 @@
               style="max-width: 70vw"
               class="form-control"
               id="title"
+              required
             />
           </div>
           <div class="mb-3">
@@ -104,6 +105,7 @@
                 min-width: 20vw;
                 min-height: 20vh;
               "
+              
               placeholder="Type your description here..."
             ></textarea>
           </div>
@@ -112,10 +114,10 @@
         </form>
       </div>
     </div>
-    <div class="row ms-md-2 ms-lg-5 ps-5 mt-3 container mb-5">
-      <div class="col-md-12 px-3">
-        <table class="table table-success rounded-3">
-          <h2 class="ms-3 your_todos" id="your_todos">Your Todos</h2>
+    <div class="row ms-md-2 ms-lg-5 ps-md-5 ps-sm-2 mt-3 container mb-5 ">
+      <div class="col-md-12 px-3 ">
+        <table class="table table-success rounded-3 ">
+          <h2 class="ms-3 your_todos " id="your_todos">Your Todos</h2>
           <thead class="">
             {% if allTodo|length==0 %}
             <div class="ms-5 alert alert-warning col-md-8" role="alert">

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect,url_for
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime, timezone
 
@@ -103,7 +103,7 @@ def update(s_no):
         todo.description = description_var
         db.session.add(todo)
         db.session.commit()
-        return redirect("/home")
+        return redirect(url_for('home') + '#your_todos')
 
     todo = Todo.query.filter_by(s_no=s_no).first()
 
