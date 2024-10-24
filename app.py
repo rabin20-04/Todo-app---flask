@@ -85,14 +85,6 @@ def home():
     return render_template("home.html", allTodo=allTodo)
 
 
-@app.route("/delete/<int:s_no>")
-def delete(s_no):
-    todo = Todo.query.filter_by(s_no=s_no).first()
-    db.session.delete(todo)
-    db.session.commit()
-    return redirect("/home")
-
-
 @app.route("/update/<int:s_no>", methods=["GET", "POST"])
 def update(s_no):
     if request.method == "POST":
@@ -108,6 +100,14 @@ def update(s_no):
     todo = Todo.query.filter_by(s_no=s_no).first()
 
     return render_template("update.html", todo=todo)
+
+
+@app.route("/delete/<int:s_no>")
+def delete(s_no):
+    todo = Todo.query.filter_by(s_no=s_no).first()
+    db.session.delete(todo)
+    db.session.commit()
+    return redirect("/home")
 
 
 def clear_todo_db():

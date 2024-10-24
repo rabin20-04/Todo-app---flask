@@ -7,10 +7,6 @@ body {
   height: 100%;
   width: 100%;
 }
-.body-2 {
-  background-color: #f0f7f3;
-}
-
 .body-1 {
   background: #159957; /* fallback for old browsers */
   background: -webkit-linear-gradient(
@@ -24,6 +20,10 @@ body {
     #159957
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
+.body-2 {
+  background-color: #f0f7f3;
+}
+
 .bag-color {
   background: #4568dc; /* fallback for old browsers */
   background: -webkit-linear-gradient(
