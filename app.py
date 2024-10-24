@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect,url_for
+from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime, timezone
 
@@ -103,11 +103,12 @@ def update(s_no):
         todo.description = description_var
         db.session.add(todo)
         db.session.commit()
-        return redirect(url_for('home') + '#your_todos')
+        return redirect(url_for("home") + "#your_todos")
 
     todo = Todo.query.filter_by(s_no=s_no).first()
 
     return render_template("update.html", todo=todo)
+
 
 def clear_todo_db():
     db.session.query(Todo).delete()
@@ -115,6 +116,6 @@ def clear_todo_db():
 
 
 if __name__ == "__main__":
-    with app.app_context():  
+    with app.app_context():
         clear_todo_db()
     app.run(debug=True, port=8001)
